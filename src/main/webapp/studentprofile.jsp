@@ -157,6 +157,14 @@
             background-color: #f8d7da;
             color: #721c24;
         }
+        .save-button {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    margin-top: 20px;
+    color: green;
+}
+        
     </style>
 </head>
 <body>
@@ -178,38 +186,55 @@
     </c:if>
 
     <h2>Student Details</h2>
-    <form action="/student/update/${student.studentId}" method="POST">
+    <form action="/student/update" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="studentId" value="${student.studentId}" />
         <table class="table table-borderless">
-       
-            <tr>
-                <th>Student ID</th>
-                <td><input type="text" name="studentId" class="form-control" value="${student.studentId}" readonly /></td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td><input type="text" name="studentName" class="form-control" value="${student.studentName}" required /></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><input type="email" class="form-control readonly" value="${student.email}" readonly /></td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td><input type="text" name="phone" class="form-control" value="${student.phone}" /></td>
-            </tr>
-            <tr>
-                <th>Date of Birth</th>
-                <td><input type="text" class="form-control readonly" value="${student.dateOfBirth}" readonly /></td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td><input type="text" class="form-control readonly" value="${student.gender}" readonly /></td>
-            </tr>
-            <tr>
-                <th>Department</th>
-                <td><input type="text" class="form-control readonly" value="${student.department}" readonly /></td>
-            </tr>
-        </table>
+            
+           <!-- <table class="table table-bordered"> -->
+    <tr>
+        <th>Student ID</th>
+        <td><input type="text" name="studentId" class="form-control" value="${student.studentId}" readonly /></td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td><input type="text" name="studentName" class="form-control" value="${student.studentName}" /></td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td><input type="email" name="email" class="form-control" value="${student.email}" /></td>
+    </tr>
+    <tr>
+        <th>Phone</th>
+        <td><input type="text" name="phone" class="form-control" value="${student.phone}" /></td>
+    </tr>
+    <tr>
+        <th>Date of Birth</th>
+        <td><input type="date" name="dateOfBirth" class="form-control" value="${student.dateOfBirth}" /></td>
+    </tr>
+    <tr>
+        <th>Gender</th>
+        <td><input type="text" name="gender" class="form-control" value="${student.gender}" /></td>
+    </tr>
+    <tr>
+        <th>Department</th>
+        <td><input type="text" name="department" class="form-control" value="${student.department}" /></td>
+    </tr>
+    <tr>
+        <th>Profile Image</th>
+        <td>
+            <img src="data:image/png;base64,${student.base64Image}" 
+                 alt="Student Image" 
+                 style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+            <br>
+            
+            <input type="file" name="image" class="form-control mt-2">
+        </td>
+    </tr>
+</table>
+
+		 <div class="save-button">
+            <button type="submit" align="center">Save</button>
+        </div>
 
     </form>
 
